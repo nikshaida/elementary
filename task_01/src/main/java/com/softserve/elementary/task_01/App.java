@@ -1,45 +1,42 @@
 package com.softserve.elementary.task_01;
 
+import com.softserve.elementary_tasks.consoleHelper.ConsoleHelper;
+
 /**
- *App
+ * App
  *
- *Version 1
+ * Version 1
  *
  *
- *04.10.2018
+ * 04.10.2018
  *
  *
  * IT Academy SoftServe
  */
 public class App {
+
+    private static final String INCORRECT_INPUT = "You input incorrect data, you have to start program with two digit";
+    private static final String NOT_DIGIT = "You have to use digit in arguments";
+
     public static void main(String[] args) {
-        if (args.length != 2) {
-            System.out.println("You input incorrect data, you have to start program with two digit");
-            return;
+        if (ArgsValidator.checkLengh(args)) {
+            ConsoleHelper.writeMessage(INCORRECT_INPUT);
+        } else {
+            Desk desk;
+            int width = 0;
+            int height = 0;
+            try {
+                width = Integer.parseInt(args[0]);
+                height = Integer.parseInt(args[1]);
+            } catch (NumberFormatException e) {
+                ConsoleHelper.writeMessage(NOT_DIGIT);
+            }
+            if (ArgsValidator.isLegalArg(width, height)) {
+                desk = new Desk(width, height);
+                desk.printDesk();
+            }
         }
-        try {
-            int width = Integer.parseInt(args[0]);
-            int height = Integer.parseInt(args[1]);
-            if (!isLegalArg(width, height)){
-                System.out.println("You can't use digit below zero");
-                return;}
-            new Desk(width, height).printDesk();
-
-        } catch (NumberFormatException e) {
-            System.out.println("You have to use digit in arguments");
-        }
-
     }
-
-    private static boolean isLegalArg(int width, int hight){
-        boolean res = true;
-
-        if (width <=0 || hight <=0){
-            res = false;
-        }
-        return res;
-    }
-
 
 
 }

@@ -1,5 +1,7 @@
 package com.softserve.elementary.task_01;
 
+import com.softserve.elementary_tasks.consoleHelper.ConsoleHelper;
+
 /**
  * Desk
  *
@@ -13,26 +15,18 @@ package com.softserve.elementary.task_01;
  **/
 
 public class Desk {
+    private final String BLACK = "*";
+    private final String WHITE = " ";
     private int height;
     private int width;
 
-    public Desk( int width, int height) {
+    public Desk(int width, int height) {
         this.height = height;
         this.width = width;
     }
 
-    public void printDesk(){
-        /*for (int i = 0; i < height; i++){
-            for (int j = 0; j < width; j++){
-                if ((i+j)%2 == 0){
-                    System.out.print("*");
-                } else {
-                    System.out.print(" ");
-                }
-            }
-            System.out.println();
-        }*/
-        System.out.println(makeDesk());
+    public void printDesk() {
+        ConsoleHelper.writeMessage(makeDesk());
 
     }
 
@@ -41,9 +35,9 @@ public class Desk {
         StringBuilder resString = new StringBuilder();
         for (int i = 0; i < width; i++) {
             if (i % 2 == 0) {
-                tmpString.append("*");
+                tmpString.append(BLACK);
             } else {
-                tmpString.append(" ");
+                tmpString.append(WHITE);
             }
         }
         tmpString.append("\n");
@@ -51,12 +45,12 @@ public class Desk {
             if (j % 2 == 0) {
                 resString.append(tmpString);
             } else {
-                resString.append(" " + tmpString);
+                resString.append(WHITE + tmpString);
             }
         }
-        return  resString.toString();
-    }
 
+        return resString.toString();
+    }
 
     @Override
     public String toString() {
