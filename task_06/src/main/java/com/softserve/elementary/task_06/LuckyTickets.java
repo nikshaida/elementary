@@ -16,6 +16,8 @@ import java.util.List;
 
 public class LuckyTickets {
 
+    private String algorithm;
+
     private int type;
 
 
@@ -23,7 +25,17 @@ public class LuckyTickets {
         this.type = 6;
     }
 
-   /* public LuckyTickets(int type) {
+    public LuckyTickets(String algorithm) {
+        this.algorithm = algorithm;
+    }
+
+    public LuckyTickets(String algorithm, int type) {
+        this.algorithm = algorithm;
+        this.type = type;
+    }
+
+
+    /* public LuckyTickets(int type) {
         this.type = type;
     }
 */
@@ -161,6 +173,22 @@ public class LuckyTickets {
         }
         return res;
     }
+
+    public int getResult(){
+        if (algorithm.equalsIgnoreCase("Moscow")){
+            return getMoscowSimple();
+        }  else if (algorithm.equalsIgnoreCase("Dnepr")){
+            return getDnepr();
+        } else {
+            return getPeter();
+        }
+
+
+
+    }
+
+
+
 
 }
 

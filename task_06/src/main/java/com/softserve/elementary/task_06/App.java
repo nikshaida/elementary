@@ -1,6 +1,7 @@
 package com.softserve.elementary.task_06;
 
 import com.softserve.elementary.task_06.Exceptions.MyException;
+import com.softserve.elementary_tasks.consoleHelper.ConsoleHelper;
 
 import java.io.*;
 
@@ -17,6 +18,16 @@ import java.io.*;
  **/
 public class App
 {
+    private static final String START_MESS = "Please print path to File with algorithm";
+    private static final String MOSCOW = "Moscow";
+    private static final String DNEPR = "DNEPR";
+    private static final String PETER = "Peter";
+    private static final String PROBLEM_FILE = "I cant find file with algorithm";
+    private static final String FOR_ALGORITHM = "Count for algorithm what was choosen: ";
+    private static final String NO_ALGORITHM = "Sorry but we don't no anything about this algorithm";
+
+
+
     public static void main( String[] args )
     {
         BufferedReader reader;
@@ -25,38 +36,40 @@ public class App
         LuckyTickets luckyTickets;
         //String type;
         File file;
-        System.out.println("Please print path to File with algorithm");
-
+        ConsoleHelper.writeMessage(START_MESS);
+        fileWithAlgoritm = ConsoleHelper.readString();
         try {
-            reader = new BufferedReader(new InputStreamReader(System.in));
-            fileWithAlgoritm = reader.readLine();
+
             file = new File(fileWithAlgoritm);
             reader = new BufferedReader(new FileReader(file));
             algorithm = reader.readLine();
-            if (!algorithm.equalsIgnoreCase("Moscow") && !algorithm.equalsIgnoreCase("Peter")
-                    && !algorithm.equalsIgnoreCase("dnepr")) {
-                throw new MyException("I don't know anything about this algorithm");
-            }
+
         } catch (FileNotFoundException e ) {
-            System.out.println("I cant find file with algorithm");
-            return;
-        } catch (MyException e) {
-            System.out.println(e.getMessage());
-            return;
+            ConsoleHelper.writeMessage(PROBLEM_FILE);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        luckyTickets = new LuckyTickets();
-
-        if (algorithm.equalsIgnoreCase("Moscow")){
-            System.out.println("For Moscow algorithm = " + luckyTickets.getMoscow());
-        } else if (algorithm.equalsIgnoreCase("Dnepr")){
-            System.out.println("For Dnepr algorithm = " + luckyTickets.getDnepr());
-        } else {
-            System.out.println("For Peter algorithm = " + luckyTickets.getPeter());
+        if (isAlgoritmPresent(algorithm)) {
+            luckyTickets = new LuckyTickets(algorithm);
+            ConsoleHelper.writeMessage(FOR_ALGORITHM + algorithm + luckyTickets.getResult());
+        }
+        else {
+            ConsoleHelper.writeMessage(NO_ALGORITHM);
         }
 
     }
+
+    private static boolean isAlgoritmPresent(String algorithm){
+        boolean res = true;
+        if  (!algorithm.equalsIgnoreCase(MOSCOW) || !algorithm.equalsIgnoreCase(PETER)
+                || !algorithm.equalsIgnoreCase(DNEPR)) {
+            res = false;
+        }
+            return res;
+    }
+
+
 
 }

@@ -56,9 +56,7 @@ public class ThousandDigit implements PrinteredDigits {
 
     private String getThousandWorld(){
 
-        if (first > 10 && first < 20){
-            stringBuilder.append(" тысячь ");
-        } else if (first > 100 && first % 100 >10 && first % 100 <20 ) {
+        if (first > 10 && first < 20 || first > 100 && first % 100 >10 && first % 100 <20 ){
             stringBuilder.append(" тысячь ");
         } else if (lastDigit == 1) {
             stringBuilder.append( " тысяча ");

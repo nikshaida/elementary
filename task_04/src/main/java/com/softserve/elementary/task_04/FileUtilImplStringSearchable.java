@@ -21,7 +21,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class FileUtilImplStringSearchable implements StringSearchable {
-    StringBuilder stringBuilder;
+    private StringBuilder stringBuilder;
 
     @Override
     public int countString(String path, String findString) throws IOException {

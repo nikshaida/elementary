@@ -1,6 +1,7 @@
 package com.softserve.elementary.task_05;
 
 import com.softserve.elementary.task_05.interfaces.PrinteredDigits;
+import com.softserve.elementary_tasks.consoleHelper.ConsoleHelper;
 
 import java.util.regex.Pattern;
 
@@ -16,7 +17,7 @@ public class DigitToString {
     }
 
     public void printResult(){
-        System.out.println(getDigitString());
+        ConsoleHelper.writeMessage(getDigitString());
     }
 
     public String getDigitString () {
@@ -50,12 +51,11 @@ public class DigitToString {
            }
 
            res.append(printeredDigits.getResult());
-            return res.toString();
+           return res.toString();
 
     }
 
     private long getDigitFromString(){
-
 
         long res = Long.parseLong(digit);
 

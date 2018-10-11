@@ -1,7 +1,5 @@
 package com.softserve.elementary.task_01;
-
 import com.softserve.elementary_tasks.consoleHelper.ConsoleHelper;
-
 /**
  * App
  *

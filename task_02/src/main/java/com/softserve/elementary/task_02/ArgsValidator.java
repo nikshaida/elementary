@@ -1,4 +1,4 @@
-package com.softserve.elementary.task_01;
+package com.softserve.elementary.task_02;
 
 public class ArgsValidator {
     static boolean checkLengh(String [] arg){
@@ -8,14 +8,12 @@ public class ArgsValidator {
         return res;
     }
 
-    static boolean isLegalArg(int width, int height){
+    static boolean isLegalArg(double width, double hight){
         boolean res = true;
 
-        if (width <=0 || height <=0){
+        if (width <=0 || hight <=0){
             res = false;
         }
         return res;
     }
-
-
 }

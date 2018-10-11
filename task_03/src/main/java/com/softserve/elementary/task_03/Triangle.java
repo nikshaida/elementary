@@ -1,5 +1,7 @@
 package com.softserve.elementary.task_03;
 
+import java.util.Comparator;
+
 /**
  * Triangle
  *
@@ -13,7 +15,7 @@ package com.softserve.elementary.task_03;
 
 
 
-public class Triangle {
+public class Triangle  {
     private String name;
     private double a;
     private double b;
@@ -67,7 +69,5 @@ public class Triangle {
         }
 
     }
-
-
 
 }

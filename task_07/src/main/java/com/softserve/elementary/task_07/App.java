@@ -1,5 +1,7 @@
 package com.softserve.elementary.task_07;
 
+import com.softserve.elementary_tasks.consoleHelper.ConsoleHelper;
+
 /**
  * App
  *
@@ -13,28 +15,30 @@ package com.softserve.elementary.task_07;
  **/
 public class App {
     public static void main(String[] args) {
-        if (args.length != 1) {
-            System.out.println("You have to start program just with one argument");
-            return;
+        if (!ArgumentChecker.checkLenght(args)) {
+            ConsoleHelper.writeMessage("You have to start program just with one argument");
         }
+            int digit =1;
+        try {
+            digit = getArgument(args[0]);
+        } catch (NumberFormatException e ){
 
-        int digit = checkArg(args[0]);
-        System.out.println(getStringResult(getMax(digit)));
-
+        }
+        if (digit <=1){
+            ConsoleHelper.writeMessage("digit have to be more than zero");
+        } else {
+            ConsoleHelper.writeMessage(getStringResult(getMax(digit)));
+        }
 
     }
 
 
-    public static int checkArg(String arg) {
+    public static int getArgument(String arg) {
         int res = 1;
         try {
-            res = Integer.parseInt(arg);
-            if (res <= 0) {
-                throw new NumberFormatException();
-            }
+              res = Integer.parseInt(arg);
         } catch (NumberFormatException e) {
-            System.out.println("You can use just digit, digit have to be more than zero");
-            System.exit(0);
+            ConsoleHelper.writeMessage("You can use just digit");
         }
 
         return res;

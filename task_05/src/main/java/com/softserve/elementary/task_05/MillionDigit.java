@@ -46,9 +46,7 @@ public class MillionDigit implements PrinteredDigits {
     }
 
     private void getMillionWord(){
-        if (first > 10 && first < 20){
-            stringBuilder.append(" миллионов ");
-        } else if (first > 100 && first % 100 >10 && first % 100 <20 ) {
+        if (first > 10 && first < 20 || first > 100 && first % 100 >10 && first % 100 <20 ){
             stringBuilder.append(" миллионов ");
         } else if (last == 1 || first == 1) {
             stringBuilder.append( " миллион ");

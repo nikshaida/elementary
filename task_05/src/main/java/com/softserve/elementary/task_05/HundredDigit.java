@@ -17,17 +17,17 @@ public class HundredDigit implements PrinteredDigits {
         if (stringBuilder == null){
         stringBuilder = new StringBuilder();}
         int first = (int) (digit / 100);
-        int another = (int) (digit % 100);
+        int other = (int) (digit % 100);
         if (first == 0){
-            tensDigit = new TensDigit(another);
+            tensDigit = new TensDigit(other);
            return stringBuilder.append(tensDigit.getResult()).toString();
         }
 
-        if (another == 0){
+        if (other == 0){
             stringBuilder.append(arrHundred[first]);
         } else {
             stringBuilder.append(arrHundred[first]+ " ");
-            tensDigit = new TensDigit(another);
+            tensDigit = new TensDigit(other);
             stringBuilder.append(tensDigit.getResult());
         }
         return stringBuilder.toString();
