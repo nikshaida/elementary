@@ -15,40 +15,51 @@ import com.softserve.elementary_tasks.consoleHelper.ConsoleHelper;
  **/
 
 public class Desk {
-    private final String BLACK = "*";
-    private final String WHITE = " ";
+    private String BLACK;
+    private String WHITE;
     private int height;
     private int width;
 
-    public Desk(int width, int height) {
+    public Desk(int width, int height, String BLACK, String WHITE) {
+        this.BLACK = BLACK;
+        this.WHITE = WHITE;
         this.height = height;
         this.width = width;
     }
 
-    public void printDesk() {
-        ConsoleHelper.writeMessage(makeDesk());
-
+    public Desk(int width, int height) {
+        this.height = height;
+        this.width = width;
+        this.WHITE = " ";
+        this.BLACK = "*";
     }
 
-    private String makeDesk() {
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void printDeskToConsol() {
+        ConsoleHelper.writeMessage(makeDeskInString());
+    }
+     String makeDeskInString() {
         StringBuilder tmpString = new StringBuilder();
         StringBuilder resString = new StringBuilder();
         for (int i = 0; i < width; i++) {
-            if (i % 2 == 0) {
-                tmpString.append(BLACK);
-            } else {
-                tmpString.append(WHITE);
-            }
+            tmpString.append(isBlack(i)  ?  BLACK : WHITE);
         }
         tmpString.append("\n");
         for (int j = 0; j < height; j++) {
             if (j % 2 == 0) {
                 resString.append(tmpString);
             } else {
-                resString.append(WHITE + tmpString);
+                resString.append(WHITE).append(tmpString);
+                resString.replace(resString.lastIndexOf(WHITE), resString.length()-1, "");
             }
         }
-
         return resString.toString();
     }
 
@@ -58,5 +69,9 @@ public class Desk {
                 "height=" + height +
                 ", width=" + width +
                 '}';
+    }
+
+    private boolean isBlack(int i){
+        return i%2 == 0;
     }
 }

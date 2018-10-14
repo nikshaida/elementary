@@ -14,10 +14,10 @@ import com.softserve.elementary_tasks.consoleHelper.ConsoleHelper;
 public class App {
 
     private static final String INCORRECT_INPUT = "You input incorrect data, you have to start program with two digit";
-    private static final String NOT_DIGIT = "You have to use digit in arguments";
+    private static final String NOT_DIGIT = "You have to use natural digit in arguments";
 
     public static void main(String[] args) {
-        if (ArgsValidator.checkLengh(args)) {
+        if (ArgsValidator.checkLength(args)) {
             ConsoleHelper.writeMessage(INCORRECT_INPUT);
         } else {
             Desk desk;
@@ -31,10 +31,8 @@ public class App {
             }
             if (ArgsValidator.isLegalArg(width, height)) {
                 desk = new Desk(width, height);
-                desk.printDesk();
+                desk.printDeskToConsol();
             }
         }
     }
-
-
 }

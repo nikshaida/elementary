@@ -1,21 +1,12 @@
 package com.softserve.elementary.task_01;
 
-public class ArgsValidator {
-    static boolean checkLengh(String [] arg){
-        boolean res = false;
+ class ArgsValidator {
+     private static final int LENGTH_ARG = 2;
 
-        if (arg.length != 2) res = true;
-        return res;
+    static boolean checkLength(String [] arg){
+        return arg.length != LENGTH_ARG;
     }
-
     static boolean isLegalArg(int width, int height){
-        boolean res = true;
-
-        if (width <=0 || height <=0){
-            res = false;
-        }
-        return res;
+        return !(width <=0 || height <=0);
     }
-
-
 }
