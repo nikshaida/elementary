@@ -6,7 +6,7 @@ import java.io.BufferedReader;
 
 public class SimpleDigit implements PrinteredDigits {
     private long simpleDigit;
-    private String[] firstTen = {"ноль", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"};
+    private static final String[] firstTen = {"ноль", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"};
 
     public SimpleDigit(long i) {
         simpleDigit = i;

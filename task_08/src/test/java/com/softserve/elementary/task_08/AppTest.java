@@ -2,6 +2,7 @@ package com.softserve.elementary.task_08;
 
 import static org.junit.Assert.assertTrue;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -9,12 +10,15 @@ import org.junit.Test;
  */
 public class AppTest 
 {
-    /**
-     * Rigorous Test :-)
-     */
+
+
     @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
+    public void fibDigit() {
+        //GIVEN
+        int expected = 13;
+        //WHEN
+        int res = App.fibDigit(7);
+        //THEN
+        Assert.assertEquals(expected, res);
     }
 }

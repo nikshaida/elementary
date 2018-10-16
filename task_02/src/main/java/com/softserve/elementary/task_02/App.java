@@ -31,23 +31,27 @@ public class App {
     private static final String WIDTH = "Please input width:";
     private static final String HEIGHT = "Please input height:";
 
-
-
-
-
-
     public static void main(String[] args) throws IOException {
-
         String action;
         Envelope envelope1;
         Envelope envelope2;
+        double width;
+        double height;
         boolean work = true;
         while (work) {
             try {
-                envelope1 = makeEnvelope();
-                envelope2 = makeEnvelope();
+                ConsoleHelper.writeMessage(WIDTH);
+                width = readParam();
+                ConsoleHelper.writeMessage(HEIGHT);
+                height = readParam();
+                envelope1 = makeEnvelope(width, height);
+                ConsoleHelper.writeMessage(WIDTH);
+                width = readParam();
+                ConsoleHelper.writeMessage(HEIGHT);
+                height = readParam();
+                envelope2 = makeEnvelope(width, height);
                 if (isFit(envelope1, envelope2)){
-                    ConsoleHelper.writeMessage(POSITIVE);
+                  ConsoleHelper.writeMessage(POSITIVE);
                 } else {
                     ConsoleHelper.writeMessage(NEGATIVE);
                 }
@@ -83,17 +87,14 @@ public class App {
         return res;
     }
 
-    public static Envelope makeEnvelope() throws NumberFormatException {
-        double width;
-        double height;
-        ConsoleHelper.writeMessage(WIDTH);
-        width = Double.parseDouble(ConsoleHelper.readString());
-        ConsoleHelper.writeMessage(HEIGHT);
-        height = Double.parseDouble(ConsoleHelper.readString());
+    public static Envelope makeEnvelope(double width, double height)  {
         if (!ArgsValidator.isLegalArg(width, height)) {throw new IllegalArgumentException();}
         return new Envelope(width, height);
+    }
 
 
+    public static double readParam() throws NumberFormatException {
+        return Double.parseDouble(ConsoleHelper.readString());
     }
 
 

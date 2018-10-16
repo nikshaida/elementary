@@ -34,7 +34,6 @@ public class App
         String fileWithAlgoritm;
         String algorithm = "";
         LuckyTickets luckyTickets;
-        //String type;
         File file;
         ConsoleHelper.writeMessage(START_MESS);
         fileWithAlgoritm = ConsoleHelper.readString();
@@ -43,17 +42,15 @@ public class App
             file = new File(fileWithAlgoritm);
             reader = new BufferedReader(new FileReader(file));
             algorithm = reader.readLine();
-
         } catch (FileNotFoundException e ) {
             ConsoleHelper.writeMessage(PROBLEM_FILE);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
 
         if (isAlgoritmPresent(algorithm)) {
             luckyTickets = new LuckyTickets(algorithm);
-            ConsoleHelper.writeMessage(FOR_ALGORITHM + algorithm + luckyTickets.getResult());
+            ConsoleHelper.writeMessage(FOR_ALGORITHM + algorithm + " "+luckyTickets.getResult());
         }
         else {
             ConsoleHelper.writeMessage(NO_ALGORITHM);
@@ -62,14 +59,9 @@ public class App
     }
 
     private static boolean isAlgoritmPresent(String algorithm){
-        boolean res = true;
-        if  (!algorithm.equalsIgnoreCase(MOSCOW) || !algorithm.equalsIgnoreCase(PETER)
-                || !algorithm.equalsIgnoreCase(DNEPR)) {
-            res = false;
-        }
-            return res;
+        return (!algorithm.equalsIgnoreCase(MOSCOW) || !algorithm.equalsIgnoreCase(PETER)
+                || !algorithm.equalsIgnoreCase(DNEPR));
+
     }
-
-
 
 }

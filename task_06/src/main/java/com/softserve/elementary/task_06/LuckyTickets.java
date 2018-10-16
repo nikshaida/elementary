@@ -15,18 +15,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LuckyTickets {
-
+    private static final int DEFAULT_TYPE = 6;
+    private static final int MAX_DIGIT_IN_ROW = 9;
     private String algorithm;
-
     private int type;
 
 
     public LuckyTickets() {
-        this.type = 6;
+        this.type = DEFAULT_TYPE;
     }
 
     public LuckyTickets(String algorithm) {
         this.algorithm = algorithm;
+        this.type = DEFAULT_TYPE;
     }
 
     public LuckyTickets(String algorithm, int type) {
@@ -35,43 +36,35 @@ public class LuckyTickets {
     }
 
 
-    /* public LuckyTickets(int type) {
-        this.type = type;
-    }
-*/
-
-    public int getMoscow() {
-        int count = 0;
-        for (int i = 9; i < countVariant(); i++) {
-            if (isLuckyMoscow(digitToList(i))) {
-                count++;
-            }
+    public int getMoscowUseRecAndCombi(){
+        int res = 0;
+        for (int i = 1; i < countMaxSum(); i++ ){
+            int variantForTicket = variantForTicket(type/2, i);
+            res+=variantForTicket*variantForTicket;
         }
-        return count;
-
+        return res;
     }
 
-    public int getMoscowSimple(){
-        int count = 0;
-        for (int i = 0; i < countVariant(type); i++){
-            for (int j = 0; j < countVariant(type); i++){
-                if (getSumOnePart(i) == getSumOnePart(j)){
-                    count++;
-                }
+    private int variantForTicket(int countHalf, int ticketNum) {
+        if (countHalf == 1) {
+            return (ticketNum <= MAX_DIGIT_IN_ROW ? 1 : 0);
+        } else {
+            int count = 0;
+            for (int i = 0; i <= (ticketNum < MAX_DIGIT_IN_ROW ? ticketNum : MAX_DIGIT_IN_ROW); ++i) {
+                count += variantForTicket(countHalf - 1, ticketNum - i);
             }
+            return count;
         }
-        return count;
     }
 
     public int getPeter() {
         int count = 0;
         for (int i = 10; i < countVariant(); i++) {
-            if (isLuckyDnepr(digitToList(i))) {
+            if (isLuckyPeter(digitToList(i))) {
                 count++;
             }
         }
         return count;
-
     }
 
     public int getDnepr() {
@@ -98,6 +91,10 @@ public class LuckyTickets {
             res *= 10;
         }
         return res;
+    }
+
+    private int countMaxSum(){
+        return (type/2)*MAX_DIGIT_IN_ROW;
     }
 
 
@@ -176,19 +173,12 @@ public class LuckyTickets {
 
     public int getResult(){
         if (algorithm.equalsIgnoreCase("Moscow")){
-            return getMoscowSimple();
+            return getMoscowUseRecAndCombi();
         }  else if (algorithm.equalsIgnoreCase("Dnepr")){
             return getDnepr();
         } else {
             return getPeter();
         }
-
-
-
     }
-
-
-
-
 }
 

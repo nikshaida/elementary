@@ -1,6 +1,7 @@
 package com.softserve.elementary.task_03;
 
 import java.util.Comparator;
+import java.util.Objects;
 
 /**
  * Triangle
@@ -23,22 +24,15 @@ public class Triangle  {
     private double area;
     private double halfPerimeter;
 
-
-
     public Triangle(String name, double a, double b, double c) {
-        if (checkRectangle(a, b, c)) {
             this.a = a;
             this.b = b;
             this.c = c;
             this.name = name;
             halfPerimeter = getHalfPerimeter();
             area = setArea();
-        } else {
-            throw new IllegalArgumentException("Your triangle can't be created");
-        }
+
     }
-
-
     public double getArea(){
         return area;
     }
@@ -51,8 +45,6 @@ public class Triangle  {
     private double getHalfPerimeter() {
         return (a + b + c) / 2;
     }
-
-
 
     private double setArea() {
         return Math.sqrt(halfPerimeter * (halfPerimeter - a) * (halfPerimeter - b) * (halfPerimeter - c));
@@ -70,4 +62,20 @@ public class Triangle  {
 
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Triangle triangle = (Triangle) o;
+        return Double.compare(triangle.a, a) == 0 &&
+                Double.compare(triangle.b, b) == 0 &&
+                Double.compare(triangle.c, c) == 0 &&
+                Double.compare(triangle.area, area) == 0 &&
+                Double.compare(triangle.halfPerimeter, halfPerimeter) == 0 &&
+                Objects.equals(name, triangle.name);
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, a, b, c, area, halfPerimeter);
+    }
 }
