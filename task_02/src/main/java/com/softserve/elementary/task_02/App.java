@@ -73,18 +73,12 @@ public class App {
 
 
     public static boolean isFit(Envelope a, Envelope b) {
-        boolean res = false;
         double firstWidth = a.getWidth();
         double firstHeight = a.getHeight();
         double secondWidth = b.getWidth();
         double secondHeight = b.getHeight();
-        if (firstWidth >= secondWidth && firstHeight >= secondHeight || firstWidth >= secondHeight && firstHeight >= secondWidth ||
-                firstWidth <= secondWidth && firstHeight <= secondHeight || firstWidth <= secondHeight && firstHeight <= secondWidth) {
-            res = true;
-        } else {
-
-        }
-        return res;
+        return  (firstWidth >= secondWidth && firstHeight >= secondHeight || firstWidth >= secondHeight && firstHeight >= secondWidth ||
+                firstWidth <= secondWidth && firstHeight <= secondHeight || firstWidth <= secondHeight && firstHeight <= secondWidth);
     }
 
     public static Envelope makeEnvelope(double width, double height)  {

@@ -43,8 +43,6 @@ public class FileUtilImplStringSearchable implements StringSearchable {
 
     @Override
     public void replaceString(String path, String findString, String replacementString) throws IOException {
-
-
         List<String> stringsFromFile = Files.readAllLines(Paths.get(path));
         stringBuilder = new StringBuilder();
         stringsFromFile.forEach(s -> stringBuilder.append(s));

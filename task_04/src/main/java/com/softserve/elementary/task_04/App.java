@@ -8,13 +8,13 @@ import java.io.IOException;
 
 /**
  * App
- *
+ * <p>
  * Version 1
- *
- *
+ * <p>
+ * <p>
  * 06.10.2018
- *
- *
+ * <p>
+ * <p>
  * IT Academy SoftServe
  **/
 public class App {
@@ -27,7 +27,6 @@ public class App {
 
 
     public static void main(String[] args) {
-
         StringSearchable operation;
 
         if (ArgsValidator.checkLenght(args)) {
@@ -38,7 +37,6 @@ public class App {
 
                 try {
                     ConsoleHelper.writeMessage(COUNTING + operation.countString(args[0], args[1]));
-
                 } catch (FileNotFoundException e) {
                     ConsoleHelper.writeMessage(FILE_PROBLEM);
                 } catch (IOException e) {

@@ -9,12 +9,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import static org.junit.Assert.*;
 
 public class FileUtilImplStringSearchableTest {
 
     private static final String PATH_TEST_FILE = "test.txt";
-    private static final String TEST_COUNT_STRING = "git";
+    private static final String TEST_COUNT_STRING = "Git";
     private static final String TEST_TEST = "If you can read only one chapter to get going with Git, this is it. " +
             "This chapter covers every basic command you need to do the vast majority of the things you’ll " +
             "eventually spend your time doing with Git. By the end of the chapter, you should be able to " +
@@ -50,13 +49,12 @@ public class FileUtilImplStringSearchableTest {
 
     @Test
     public void replaceString() throws IOException {
-      /*  //GIVEN
-        int expected = 0;
+        int expected = 3;
         //WHEN
         fileUtilImplStringSearchable.replaceString(PATH_TEST_FILE, TEST_COUNT_STRING, "XXXXX");
-        int res = fileUtilImplStringSearchable.countString(PATH_TEST_FILE, TEST_COUNT_STRING);
+        int res = fileUtilImplStringSearchable.countString(PATH_TEST_FILE, "XXXXX");
         //THEN
-        Assert.assertEquals(expected, res);*/
+        Assert.assertEquals(expected, res);
 
 
     }

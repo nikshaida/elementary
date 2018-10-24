@@ -21,4 +21,19 @@ public class AppTest
         //THEN
         Assert.assertEquals(expected, res);
     }
+
+    @Test
+    public void printRangeOfFib() {
+        //GIVEN
+        String expected = "8, 13, 21, 34";
+        //WHEN
+        String res = App.printRangeOfFib(6, 52);
+        //THEN
+        Assert.assertEquals(expected, res);
+
+
+
+    }
+
+
 }

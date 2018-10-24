@@ -5,13 +5,11 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import static org.junit.Assert.*;
 
 public class AppTest {
 
     @Rule
     public ExpectedException expectedException = ExpectedException.none();
-
 
 
     @Test
@@ -44,8 +42,6 @@ public class AppTest {
         expectedException.expect(IllegalArgumentException.class);
         //WHEN
         Envelope res = App.makeEnvelope(-2, 2.2);
-        //THEN
-
 
     }
 }

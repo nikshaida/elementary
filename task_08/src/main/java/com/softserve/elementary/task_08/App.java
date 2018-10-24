@@ -19,7 +19,7 @@ public class App {
                 int finish = Integer.parseInt(args[1]);
 
                 if (checkArg(start, finish)) {
-                    printRangeOfFib(start, finish);
+                   ConsoleHelper.writeMessage(printRangeOfFib(start, finish));
                 } else {
                     ConsoleHelper.writeMessage("You digit must be bigger then zero");
                 }
@@ -31,19 +31,18 @@ public class App {
         }
     }
 
-    public static void printRangeOfFib(int startRange, int endRange) {
+    public static String printRangeOfFib(int startRange, int endRange) {
         StringBuilder stringBuilder = new StringBuilder();
-        long fib = 0;
+        long fib;
         if ((endRange - startRange) < startRange || startRange > endRange) {
-            ConsoleHelper.writeMessage("No digit in this range");
-            return;
+            return stringBuilder.append("No digit in this range").toString();
         }
         for (int i = 1; i < endRange; i++) {
             fib = fibDigit(i);
             if (fib > endRange) break;
             if ((fib = fibDigit(i)) > startRange) stringBuilder.append(fib + ", ");
         }
-        ConsoleHelper.writeMessage(stringBuilder.substring(0, stringBuilder.lastIndexOf(", ")));
+        return  stringBuilder.substring(0, stringBuilder.lastIndexOf(", "));
 
     }
 

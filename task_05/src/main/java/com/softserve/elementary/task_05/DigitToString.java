@@ -3,13 +3,9 @@ package com.softserve.elementary.task_05;
 import com.softserve.elementary.task_05.interfaces.PrinteredDigits;
 import com.softserve.elementary_tasks.consoleHelper.ConsoleHelper;
 
-import java.util.regex.Pattern;
 
 public class DigitToString {
-    private PrinteredDigits printeredDigits;
     private String digit;
-    private long myDigit;
-
 
     public DigitToString(String digit) {
         this.digit = digit;
@@ -21,7 +17,8 @@ public class DigitToString {
 
     public String getDigitString() {
         StringBuilder res = new StringBuilder();
-
+        long myDigit;
+        PrinteredDigits printeredDigits = null;
         try {
             myDigit = getDigitFromString();
         } catch (NumberFormatException e) {
