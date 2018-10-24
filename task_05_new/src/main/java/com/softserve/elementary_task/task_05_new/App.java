@@ -17,7 +17,7 @@ public class App
     {
         if (args.length == 1) {
             try {
-                DigitToString digitToString = new DigitToString(args[0]);
+                DigitToString digitToString = new DigitToString(Long.parseLong(args[0]));
                 ConsoleHelper.writeMessage(digitToString.getResult());
             } catch (NumberFormatException e) {
                 ConsoleHelper.writeMessage(NUMBER_ERROR);

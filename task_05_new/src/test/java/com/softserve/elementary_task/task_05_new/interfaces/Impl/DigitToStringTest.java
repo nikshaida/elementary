@@ -21,7 +21,7 @@ public class DigitToStringTest {
        String expected = "одинадцать ";
 
         //WHEN
-        PrinteredDigits printeredDigits = new DigitToString("11");
+        PrinteredDigits printeredDigits = new DigitToString((long) 11);
         String  res = printeredDigits.getResult();
         //THEN
         Assert.assertEquals(expected, res);
@@ -33,7 +33,7 @@ public class DigitToStringTest {
         String expected = "сто двадцать один ";
 
         //WHEN
-        PrinteredDigits printeredDigits = new DigitToString("121");
+        PrinteredDigits printeredDigits = new DigitToString((long) 121);
         String  res = printeredDigits.getResult();
         //THEN
         Assert.assertEquals(expected, res);
@@ -45,7 +45,7 @@ public class DigitToStringTest {
         String expected = "сто двадцать одна тысяча сто двадцать один ";
 
         //WHEN
-        PrinteredDigits printeredDigits = new DigitToString("121121");
+        PrinteredDigits printeredDigits = new DigitToString(121121L);
         String  res = printeredDigits.getResult();
         //THEN
         Assert.assertEquals(expected, res);
@@ -57,7 +57,7 @@ public class DigitToStringTest {
         String expected = "один миллион сто двадцать одна тысяча сто двадцать один ";
 
         //WHEN
-        PrinteredDigits printeredDigits = new DigitToString("1121121");
+        PrinteredDigits printeredDigits = new DigitToString(1121121L);
         String  res = printeredDigits.getResult();
         //THEN
         Assert.assertEquals(expected, res);
@@ -69,7 +69,7 @@ public class DigitToStringTest {
         String expected = "одинадцать миллиардов тринадцать миллионов двести тринадцать тысяч сто тридцать один ";
 
         //WHEN
-        PrinteredDigits printeredDigits = new DigitToString("11013213131");
+        PrinteredDigits printeredDigits = new DigitToString(11013213131L);
         String  res = printeredDigits.getResult();
         //THEN
         Assert.assertEquals(expected, res);
@@ -81,14 +81,14 @@ public class DigitToStringTest {
         String expected = "минус тринадцать ";
 
         //WHEN
-        PrinteredDigits printeredDigits = new DigitToString("-13");
+        PrinteredDigits printeredDigits = new DigitToString((long) -13);
         String  res = printeredDigits.getResult();
         //THEN
         Assert.assertEquals(expected, res);
     }
 
 
-    @Test
+    /*@Test
     public void getNegativeTest() {
         //GIVEN
         expectedException.expect(NumberFormatException.class);
@@ -98,7 +98,7 @@ public class DigitToStringTest {
         printeredDigits.getResult();
 
 
-    }
+    }*/
 
 
 

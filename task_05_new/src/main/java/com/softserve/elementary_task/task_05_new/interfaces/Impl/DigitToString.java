@@ -11,7 +11,8 @@ public class DigitToString implements PrinteredDigits {
     private static final int MILLION = 1_000_000;
     private static final int BILLION = 1_000_000_000;
     private String minus = "минус";
-    private String startArg;
+    //private String startArg;
+    private long startArg;
     private StringBuilder stringBuilder;
     private static String[] forFirstTwoThousands = {"",
             "одна",
@@ -66,10 +67,16 @@ public class DigitToString implements PrinteredDigits {
     };
 
 
-    public DigitToString(String startArg) {
+    /*public DigitToString(String startArg) {
+        this.startArg = startArg;
+        this.stringBuilder = new StringBuilder();
+    }*/
+
+    public DigitToString(Long startArg) {
         this.startArg = startArg;
         this.stringBuilder = new StringBuilder();
     }
+
 
     @Override
     public String getResult()  {
@@ -79,19 +86,19 @@ public class DigitToString implements PrinteredDigits {
 
     private int getTypeOfDigit() {
         int res;
-        if (startArg.startsWith("-")) {
+        if (startArg < 0) {
             stringBuilder.append(minus).append(" ");
-             res = (int) Math.ceil(((double)startArg.length()-1) / SEPARATE_THOUSANDS) ;
+             res = (int) Math.ceil(((double)String.valueOf(startArg).length()-1) / SEPARATE_THOUSANDS) ;
 
         } else {
-            res = (int) Math.ceil((double) startArg.length() / SEPARATE_THOUSANDS);
+            res = (int) Math.ceil((double) String.valueOf(startArg).length() / SEPARATE_THOUSANDS);
         }
         return res;
     }
 
 
     private long getDigitFromStartArg() {
-        return Math.abs(Long.parseLong(startArg));
+        return Math.abs(startArg);
     }
 
     private String getStringFromDigit(long digit, int type) {
