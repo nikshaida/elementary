@@ -1,14 +1,17 @@
 package com.softserve.elementary.task_01;
+
+
 import com.softserve.elementary_tasks.consoleHelper.ConsoleHelper;
+
 /**
  * App
- *
+ * <p>
  * Version 1
- *
- *
+ * <p>
+ * <p>
  * 04.10.2018
- *
- *
+ * <p>
+ * <p>
  * IT Academy SoftServe
  */
 public class App {
@@ -17,22 +20,21 @@ public class App {
     private static final String NOT_DIGIT = "You have to use natural digit in arguments";
 
     public static void main(String[] args) {
-        if (ArgsValidator.checkLength(args)) {
-            ConsoleHelper.writeMessage(INCORRECT_INPUT);
-        } else {
-            Desk desk;
-            int width = 0;
-            int height = 0;
+        if (!ArgsValidator.checkLength(args)) {
             try {
-                width = Integer.parseInt(args[0]);
-                height = Integer.parseInt(args[1]);
-            } catch (NumberFormatException e) {
-                ConsoleHelper.writeMessage(NOT_DIGIT);
+                Desk desk;
+                int width = ArgsValidator.getInteger(args[0], "width");
+                int height = ArgsValidator.getInteger(args[1], "height");
+                if (ArgsValidator.isLegalArg(width, height)) {
+                    desk = new Desk(width, height);
+                    desk.printDeskToConsol();
+                }
+            } catch (IllegalArgumentException e) {
+                ConsoleHelper.writeMessage(e.getMessage());
             }
-            if (ArgsValidator.isLegalArg(width, height)) {
-                desk = new Desk(width, height);
-                desk.printDeskToConsol();
-            }
+        } else {
+            ConsoleHelper.writeMessage(INCORRECT_INPUT);
         }
+
     }
 }

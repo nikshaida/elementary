@@ -15,23 +15,21 @@ import com.softserve.elementary_tasks.consoleHelper.ConsoleHelper;
  **/
 
 public class Desk {
-    private String BLACK;
-    private String WHITE;
+    private String black;
+    private String white;
     private int height;
     private int width;
 
-    public Desk(int width, int height, String BLACK, String WHITE) {
-        this.BLACK = BLACK;
-        this.WHITE = WHITE;
+    public Desk(int width, int height, String black, String white) {
+        this.black = black;
+        this.white = white;
         this.height = height;
         this.width = width;
     }
 
     public Desk(int width, int height) {
-        this.height = height;
-        this.width = width;
-        this.WHITE = " ";
-        this.BLACK = "*";
+        this(width, height, "*", " ");
+
     }
 
     public int getHeight() {
@@ -45,19 +43,24 @@ public class Desk {
     public void printDeskToConsol() {
         ConsoleHelper.writeMessage(makeDeskInString());
     }
-     String makeDeskInString() {
+
+    String makeDeskInString() {
         StringBuilder tmpString = new StringBuilder();
         StringBuilder resString = new StringBuilder();
         for (int i = 0; i < width; i++) {
-            tmpString.append(isBlack(i)  ?  BLACK : WHITE);
+            tmpString.append(isBlack(i)  ? black : white);
+            if (i == width-1){
+                tmpString.append("\n");
+            }
+
         }
-        tmpString.append("\n");
+
         for (int j = 0; j < height; j++) {
             if (j % 2 == 0) {
                 resString.append(tmpString);
             } else {
-                resString.append(WHITE).append(tmpString);
-                resString.replace(resString.lastIndexOf(WHITE), resString.length()-1, "");
+                resString.append(white).append(tmpString);
+                resString.replace(resString.lastIndexOf(white), resString.length()-1, "");
             }
         }
         return resString.toString();
