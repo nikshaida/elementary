@@ -6,6 +6,9 @@ public class Ticket {
     private int type;
     private int number;
 
+    public Ticket() {
+    }
+
     public Ticket(int number) {
         this.number = number;
         this.type = DEFAULT_TYPE;

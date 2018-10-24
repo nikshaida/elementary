@@ -11,13 +11,11 @@ package com.softserve.elementary.task_06;
  * IT Academy SoftServe
  **/
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class LuckyTickets {
     private static final int DEFAULT_TYPE = 6;
     private static final int MAX_DIGIT_IN_ROW = 9;
-    private String algorithm;
+    private String algorithmName;
     private int type;
 
 
@@ -25,26 +23,28 @@ public class LuckyTickets {
         this.type = DEFAULT_TYPE;
     }
 
-    public LuckyTickets(String algorithm) {
-        this.algorithm = algorithm;
+    public LuckyTickets(String algorithmName) {
+        this.algorithmName = algorithmName;
         this.type = DEFAULT_TYPE;
     }
 
-    public LuckyTickets(String algorithm, int type) {
-        this.algorithm = algorithm;
+    public LuckyTickets(String algorithmName, int type) {
+        this.algorithmName = algorithmName;
         this.type = type;
     }
 
 
-    public int getMoscowUseRecAndCombi(){
+    private int getMoscowUseRecAndCombi(){
         int res = 0;
-        for (int i = 1; i < countMaxSum(); i++ ){
+        for (int i = 0; i <=countMaxSum(); ++i ){
             int variantForTicket = variantForTicket(type/2, i);
             res+=variantForTicket*variantForTicket;
         }
         return res;
     }
 
+
+    //count variant of lucky combination for sum
     private int variantForTicket(int countHalf, int ticketNum) {
         if (countHalf == 1) {
             return (ticketNum <= MAX_DIGIT_IN_ROW ? 1 : 0);
@@ -57,34 +57,7 @@ public class LuckyTickets {
         }
     }
 
-    public int getPeter() {
-        int count = 0;
-        for (int i = 10; i < countVariant(); i++) {
-            if (isLuckyPeter(digitToList(i))) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    public int getDnepr() {
-        int count = 0;
-        for (int i = 10; i < countVariant(); i++) {
-            if (isLuckyDnepr(digitToList(i))) {
-                count++;
-            }
-        }
-        return count;
-    }
-
-    private int countVariant(int num) {
-        int res = 1;
-        for (int i = 0; i < num/2; i++) {
-            res *= 10;
-        }
-        return res;
-    }
-
+    //counting variant of numbers of ticket
     private int countVariant() {
         int res = 1;
         for (int i = 0; i < type; i++) {
@@ -92,89 +65,67 @@ public class LuckyTickets {
         }
         return res;
     }
-
+    //count max sum of half part of ticket
     private int countMaxSum(){
         return (type/2)*MAX_DIGIT_IN_ROW;
     }
 
 
+    private int[] numberToDigitArr(int number){
+        int [] digitsArr = {0,0,0,0,0,0};
+        //  I try to fil my arr from begining but for this i have to use a lot of args
+        int positionOfDigit = digitsArr.length-1;
 
-    private boolean isLuckyMoscow(List<Integer> list) {
-        boolean res = false;
-        int resToFirstPart = 0;
-        int resToSecondPart = 0;
-        for (int i = 0; i < list.size(); i++) {
-            if (i < list.size() / 2) {
-                resToFirstPart += list.get(i);
+        while (number > 0){
+            digitsArr[positionOfDigit] = number % 10;
+            number = number / 10;
+            positionOfDigit--;
+        }
+
+        return digitsArr;
+    }
+
+    private boolean isLuckyTicketPeter(int number){
+        int [] arr = numberToDigitArr(number);
+        return (arr[0] + arr[2] + arr[4]) == (arr[1] + arr[3] + arr[5]);
+
+    }
+
+    private boolean isLuckyTicketDnepr(int number){
+        int [] arr = numberToDigitArr(number);
+        int odd = 0;
+        int even = 0;
+        for (int i = 0; i < arr.length; i++){
+            if (arr[i] % 2 ==0 ) {
+             even+=arr[i];
             } else {
-                resToSecondPart += list.get(i);
+                odd+=arr[i];
             }
         }
-        if (resToFirstPart == resToSecondPart) {
-            res = true;
-        }
-        return res;
+        return odd == even;
     }
 
-    private boolean isLuckyPeter(List<Integer> list) {
-        boolean res = false;
-        int resToFirstPart = 0;
-        int resToSecondPart = 0;
-        for (int i = 0; i < list.size(); i++) {
-            if (i % 2 == 0) {
-                resToFirstPart += list.get(i);
-            } else {
-                resToSecondPart += list.get(i);
-            }
-        }
-        if (resToFirstPart == resToSecondPart) {
-            res = true;
-        }
-        return res;
-    }
-
-
-    private boolean isLuckyDnepr(List<Integer> list) {
-        boolean res = false;
-        int resToFirstPart = 0;
-        int resToSecondPart = 0;
-        for (int i = 0; i < list.size(); i++) {
-            int tmp = list.get(i);
-            if (tmp % 2 == 0) {
-                resToFirstPart += list.get(i);
-            } else {
-                resToSecondPart += list.get(i);
-            }
-        }
-        if (resToFirstPart == resToSecondPart) {
-            res = true;
-        }
-        return res;
-    }
-
-    private List<Integer> digitToList(int digit) {
-        List<Integer> list = new ArrayList<>();
-        while (digit / 10 > 0) {
-            list.add(digit % 10);
-            digit /= 10;
-            if (digit < 10) list.add(digit);
-        }
-        return list;
-    }
-
-    private int getSumOnePart(int num){
+    private int getPeter(){
         int res = 0;
-        while (num >0){
-            res+=num%10;
-            num/=10;
+        for (int i = 0; i < countVariant(); i++){
+            if (isLuckyTicketPeter(i)) res++;
         }
         return res;
     }
+
+    private int getDnepr(){
+        int res = 0;
+        for (int i = 0; i < countVariant(); i++){
+            if (isLuckyTicketDnepr(i)) res++;
+        }
+        return res;
+    }
+
 
     public int getResult(){
-        if (algorithm.equalsIgnoreCase("Moscow")){
+        if (algorithmName.equalsIgnoreCase("Moscow")){
             return getMoscowUseRecAndCombi();
-        }  else if (algorithm.equalsIgnoreCase("Dnepr")){
+        }  else if (algorithmName.equalsIgnoreCase("Dnepr")){
             return getDnepr();
         } else {
             return getPeter();
