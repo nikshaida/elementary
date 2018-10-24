@@ -14,19 +14,19 @@ public class DeskTest {
     }
 
     @Test
-    public void makeDeskInString() {
+    public void makeDeskInStringTest() {
         //GIVEN
-        String expectedString = "* \n *\n";
         int expectedLength = 6;
+        String expectedString = "* \n *\n";
         //WHEN
         String res = desk.makeDeskInString();
         int resLength = res.length();
         //THEN
-        Assert.assertEquals(expectedString, res);
         Assert.assertEquals(expectedLength, resLength);
+        Assert.assertEquals(expectedString, res);
     }
 
-    public void checkWidthandHight(){
+    public void checkWidthandHightTest(){
         //GIVEN
         int expectedWidth = 2;
         int expectedHeight = 2;
